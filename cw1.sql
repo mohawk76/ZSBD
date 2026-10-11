@@ -41,9 +41,9 @@ create table employees (
 );
 
 create table job_history (
-   employee_id   number,
-   start_date    date,
-   end_date      date,
+   employee_id number,
+   start_date  date,
+   end_date    date,
    primary key ( employee_id,
                  start_date )
 );
@@ -251,6 +251,12 @@ delete from jobs
 
 commit;
 
-DROP TABLE job_history;
+drop table job_history;
 
-FLASHBACK TABLE job_history TO BEFORE DROP;
+select object_name,
+       original_name,
+       type,
+       droptime
+  from recyclebin;
+
+flashback table job_history to before drop;
