@@ -109,3 +109,20 @@ select e.hire_date,
  where e.manager_id is not null
    and extract(year from e.hire_date) = 2005
  order by &kolumna;
+
+select e.first_name
+       || ' '
+       || e.last_name as imie_nazwisko,
+       e.salary,
+       e.phone_number
+  from employees e
+ where substr(
+      e.last_name,
+      3,
+      1
+   ) = 'e'
+   and lower(e.first_name) like '%'
+                                || lower('&&czesc_imienia')
+                                || '%'
+ order by 1 desc,
+          2 asc;
